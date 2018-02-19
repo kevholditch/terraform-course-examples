@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "kevholditch-myfirst-bucket2"
+  bucket = "kevholditch-myfirst-bucket"
 }
 
 resource "aws_iam_policy" "my_bucket_policy" {
