@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 data "aws_s3_bucket" "my_bucket" {
-  bucket = "kevholditch-myfirst-bucket"
+  bucket = "kevholditch-already-here"
 }
 
 resource "aws_iam_policy" "my_bucket_policy" {
@@ -28,3 +28,5 @@ resource "aws_iam_policy" "my_bucket_policy" {
 }
 POLICY
 }
+
+
