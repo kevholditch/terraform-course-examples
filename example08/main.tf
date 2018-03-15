@@ -4,17 +4,23 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-provider "aws" {
-  region = "eu-west-2"
-  alias  = "london"
+variable "tag_map" {
+  type = "map"
+  default = {
+    dev	  = "dev-queue",
+    test  = "test-queue",
+    prod  = "prod-queue"
+  }
 }
 
-resource aws_s3_bucket "ireland_bucket" {
-  bucket = "kevholditch-ireland"
-}
+variable "env_type" {}
 
-resource aws_s3_bucket "london_bucket" {
-  bucket   = "kevholditch-london"
-  provider = "aws.london"
-}
+variable "queue_name" {}
 
+resource "aws_sqs_queue" "queue" {
+  name = "${var.queue_name}"
+
+  tags {
+    environment_type = "${lookup(var.tag_map, var.env_type)}"
+  }
+}
